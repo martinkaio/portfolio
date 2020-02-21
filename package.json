@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-website",
+  "version": "0.0.0",
+  "description": "Software development portfolio of Martin Kaio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Martin Kaio",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "express": "^4.17.1",
+    "prettier": "^1.19.1"
+  }
+}
