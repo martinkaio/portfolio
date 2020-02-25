@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lobster"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
     <title><%= siteName %> | <%= pageTitle %></title>
   </head>
   <body>
-    <h2>CatPhotoApp</h2>
+    <h2 class="red-text">CatPhotoApp</h2>
     <main>
       <p>Click here to view more <a href="#">cat photos</a>.</p>
 
-      <a href="#"
-        ><img
+      <a href="#">
+        <img
+          class="smaller-image thick-green-border"
           src="https://bit.ly/fcc-relaxing-cat"
           alt="A cute orange cat lying on its back."
-      /></a>
-      <div>
+        />
+      </a>
+      <div class="silver-background">
         <p>Things cats love:</p>
         <ul>
           <li>cat nip</li>
@@ -27,7 +35,7 @@
           <li>other cats</li>
         </ol>
       </div>
-      <form action="/submit-cat-photo">
+      <form id="cat-photo-form" action="/submit-cat-photo">
         <label for="indoor">
           <input
             id="indoor"
