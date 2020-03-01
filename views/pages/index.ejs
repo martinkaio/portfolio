@@ -13,14 +13,16 @@
     <header>
       <nav id="navbar">
         <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="">Contact</a></li>
+          <li><a id="right" href="">Home</a></li>
+          <li><a id="left" href="">Contact</a></li>
         </ul>
       </nav>
     </header>
     <h2 class="red-text">CatPhotoApp</h2>
     <main>
-      <p>Click here to view more <a href="#">cat photos</a>.</p>
+      <p class="gradient-background">
+        Click here to view more <a href="#">cat photos</a>.
+      </p>
 
       <a href="#">
         <img
@@ -43,7 +45,11 @@
           <li>other cats</li>
         </ol>
       </div>
-      <form id="cat-photo-form" action="/submit-cat-photo">
+      <form
+        class="gradient-background"
+        id="cat-photo-form"
+        action="/submit-cat-photo"
+      >
         <label for="indoor">
           <input
             id="indoor"
