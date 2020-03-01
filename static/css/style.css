@@ -1,74 +1,73 @@
-<style>
-  .red-text {
-    color: red;
-  }
+.red-text {
+  color: red;
+}
 
-  h2 {
-    font-family: Lobster, monospace;
-  }
+h2 {
+  font-family: Lobster, monospace;
+}
 
-  p {
-    font-size: 16px;
-    font-family: monospace;
-  }
-  
-  #navbar {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    background-color: #767676;
-  }
+p {
+  font-size: 16px;
+  font-family: monospace;
+}
 
-  nav ul {
-    margin: 0px;
-  }
-  nav li {
-    display: inline;
-    margin: auto;
-  }
+#navbar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: #767676;
+}
 
-  #right {
-    float: right;
-    width: 50%;
-  }
+nav ul {
+  margin: 0px;
+}
+nav li {
+  display: inline;
+  margin: auto;
+}
 
-  #left {
-    float: left;
-    width: 50%;
-  }
+#right {
+  float: right;
+  width: 50%;
+}
 
-  .thick-green-border {
-    border-color: green;
-    border-width: 10px;
-    border-style: solid;
-    border-radius: 50%;
-  }
+#left {
+  float: left;
+  width: 50%;
+}
 
-  .smaller-image {
-    width: 100px;
-  }
+.thick-green-border {
+  border-color: green;
+  border-width: 10px;
+  border-style: solid;
+  border-radius: 50%;
+}
 
-  .silver-background {
-    background-color: silver;
-  }
-  [type='checkbox'] {
-    margin: 10px 0px 15px 0px;
-  }
+.smaller-image {
+  width: 100px;
+}
 
-  .orange {
-    background-color: #FF7F00;
-  }
+.silver-background {
+  background-color: silver;
+}
 
-  .cyan {
-    background-color: #00FFFF;
-  }
+[type="checkbox"] {
+  margin: 10px 0px 15px 0px;
+}
 
-  .raspberry {
-    background-color: #FF007F;
-  }
+.orange {
+  background-color: #ff7f00;
+}
 
-  .gradient-background {
-    background-color: linear-gradient(35deg, #CCFFFF, #FFCCCC);
-  }
-</style>
+.cyan {
+  background-color: #00ffff;
+}
+
+.raspberry {
+  background-color: #ff007f;
+}
+
+.gradient-background {
+  background: linear-gradient(35deg, #ccffff, #ffcccc);
+}
