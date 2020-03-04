@@ -62,6 +62,8 @@ nav li {
 
 .smaller-image:hover {
   transform: scale(1.5);
+  position: relative;
+  left: 40px;
 }
 
 .silver-background {
@@ -107,15 +109,16 @@ nav li {
 }
 .heart {
   position: relative;
-  margin: 15px;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  margin: auto;
+  top: 30px;
   background-color: rgb(255, 130, 151);
   height: 50px;
   width: 50px;
   transform: rotate(-45deg);
+  animation-name: rotate;
+  animation-duration: 3.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 .heart::after {
   background-color: rgb(255, 130, 151);
@@ -136,4 +139,28 @@ nav li {
   height: 50px;
   top: -25px;
   left: 0px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: scale(1) rotate(-45deg);
+  }
+  25% {
+    transform: scale(0.95) rotate(45deg);
+
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(0.92) rotate(135deg);
+
+    opacity: 0.2;
+  }
+  75% {
+    transform: scale(0.95) rotate(225deg);
+
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1) rotate(315deg);
+  }
 }
