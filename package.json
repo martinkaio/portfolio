@@ -26,5 +26,9 @@
     "express-validator": "^6.4.0",
     "http-errors": "^1.7.3",
     "ejs": "^3.0.1"
+  },
+  "engine": {
+    "node": "*",
+    "npm": "*"
   }
 }
