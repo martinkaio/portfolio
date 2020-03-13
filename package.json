@@ -1,6 +1,6 @@
 {
   "name": "portfolio-website",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Software development portfolio of Martin Kaio",
   "repository": "https://github.com/kTasuja/portfolio-website",
   "main": "server.js",
