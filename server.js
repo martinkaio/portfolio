@@ -7,8 +7,7 @@ const routes = require("./routes");
 const app = express();
 
 const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
-const ip = (ip =
-  process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0");
+const ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
 
 app.set("trust proxy", 1);
 
@@ -44,3 +43,5 @@ app.use((err, request, response, next) => {
 app.listen(port, ip, () => {
   console.log(`Express server listening on ${ip}:${port}!`);
 });
+
+module.exports = app;
