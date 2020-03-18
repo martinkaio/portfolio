@@ -1,0 +1,70 @@
+#navbar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: #00ffff;
+}
+
+nav ul {
+  margin: 0px;
+}
+nav li {
+  display: inline;
+  margin: auto;
+  color: #ff007f;
+}
+
+.raspberry-text {
+  color: #ff007f;
+}
+
+#right {
+  float: right;
+  width: 50%;
+}
+
+#left {
+  float: left;
+  width: 50%;
+}
+
+body {
+  font-family: Arial;
+  text-align: center;
+  margin: 0;
+  background-color: #333;
+}
+
+#main {
+  background-color: #557;
+  line-height: 1.2em;
+  margin: 30px 8px;
+  padding: 0.5em;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+#img-div {
+  background-color: #556;
+  padding: 0.5em;
+}
+
+#tribute-info {
+  text-align: left;
+  max-width: 550px;
+  margin: 0 auto 50px auto;
+}
+
+#tribute-link {
+  text-align: center;
+}
