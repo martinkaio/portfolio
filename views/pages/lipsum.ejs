@@ -2,10 +2,13 @@
 <html>
   <head>
     <link rel="stylesheet" href="css/style_welcome.css" />
+    <link rel="stylesheet" href="css/nav-bar.css" />
     <title><%= siteName %> | <%= pageTitle %></title>
   </head>
   <body>
-    <%- include('./partials/navigation') %>
+    <header>
+      <%- include('./partials/nav-bar') %>
+    </header>
     <main id="main">
       <h1 id="title">
         Lorem ipsum dolor sit amet

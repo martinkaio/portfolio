@@ -1,0 +1,59 @@
+body {
+  font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+}
+
+html {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Halant", "Courier New", Courier, monospace;
+  font-size: 1.4em;
+}
+
+.gradient-bg {
+  background: linear-gradient(110deg, #222629, #61892f);
+  color: #dce2e6;
+  height: 100%;
+}
+
+#gorgeous-contrast {
+  color: #61892f;
+  color: #86c232;
+  color: #222629;
+  color: #474b4f;
+  color: #6b6e70;
+  color: #dce2e6;
+}
+
+#youtube {
+  text-align: center;
+}
+
+iframe {
+  border: 1px solid black;
+}
+
+.iframe-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+iframe {
+  position: absolute;
+  top: 0;
+  left: 10;
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+}

@@ -10,23 +10,6 @@ a:visited {
   color: #00ffaf;
 }
 
-#navbar {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  background-color: #c20e68;
-}
-
-nav ul {
-  margin: 0px;
-}
-nav li {
-  display: inline;
-  margin: auto;
-  color: #ff007f;
-}
-
 .raspberry-text {
   color: #ff007f;
 }
