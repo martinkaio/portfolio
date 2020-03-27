@@ -76,6 +76,7 @@ nav.main-menu.expanded {
 .main-menu .nav-text {
   position: relative;
   display: table-cell;
+  text-align: left;
   vertical-align: middle;
   width: 190px;
   font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
