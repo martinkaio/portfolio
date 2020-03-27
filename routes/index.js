@@ -29,7 +29,9 @@ module.exports = () => {
     };
 
     try {
-      var db = router.db;
+      var db = null;
+      var dbDetails = new Object();
+
       if (!db) {
         initDb(function(err) {});
       }
