@@ -54,7 +54,7 @@ module.exports = () => {
         });
       }
 
-      app.get("/pagecount", function(req, res) {
+      router.get("/pagecount", function(req, res) {
         // try to initialize the db on every request if it's not already
         // initialized.
         if (!db) {
@@ -67,6 +67,10 @@ module.exports = () => {
         } else {
           res.send("{ pageCount: -1 }");
         }
+      });
+
+      initDb(function(err) {
+        console.log("Error connecting to Mongo. Message:\n" + err);
       });
     } catch (err) {
       return next(err);
