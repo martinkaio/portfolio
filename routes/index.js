@@ -8,7 +8,7 @@ const router = express.Router();
 module.exports = () => {
   router.get("/", (request, response, next) => {
     const initDb = function(callback) {
-      if (request.mongoURL == null) return;
+      if (router.mongoURL == null) return;
 
       const mongodb = require("mongodb");
       if (mongodb == null) return;
@@ -21,22 +21,22 @@ module.exports = () => {
 
         db = conn;
         dbDetails.databaseName = db.databaseName;
-        dbDetails.url = request.mongoURLLabel;
+        dbDetails.url = router.mongoURLLabel;
         dbDetails.type = "MongoDB";
 
-        console.log("Connected to MongoDB at: %s", request.mongoURL);
+        console.log("Connected to MongoDB at: %s", router.mongoURL);
       });
     };
 
     try {
-      var db = request.db;
+      var db = router.db;
       if (!db) {
         initDb(function(err) {});
       }
       if (db) {
         var col = db.collection("counts");
         // Create a document with request IP and current time of request
-        col.insert({ ip: request.ip, date: Date.now() });
+        col.insert({ ip: router.ip, date: Date.now() });
         col.count(function(err, count) {
           if (err) {
             console.log("Error running count. Message:\n" + err);
