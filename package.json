@@ -1,38 +1,34 @@
 {
-  "name": "portfolio-website",
+  "name": "nodejs-ex",
   "version": "0.0.1",
-  "description": "Software development portfolio of Martin Kaio",
-  "repository": "https://github.com/kTasuja/portfolio-website",
+  "description": "Node.js sample app for OpenShift 3",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "Martin Kaio",
-  "license": "MIT",
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "nodemon": "^2.0.2",
-    "prettier": "^1.19.1"
-  },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "cookie-session": "^1.4.0",
-    "ejs": "^3.0.1",
-    "express": "^4.17.1",
-    "express-validator": "^6.4.0",
-    "http-errors": "^1.7.3",
-    "minimist": "^1.2.5",
-    "mongodb": "^3.5.5",
-    "object-assign": "^4.1.1",
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "mocha": "^2.4.5",
+    "mongodb": "^2.1.16",
     "morgan": "^1.7.0",
+    "object-assign":"4.1.0"
   },
   "engine": {
     "node": "*",
     "npm": "*"
-  }
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/sclorg/nodejs-ex.git"
+  },
+  "author": "Steve Speicher <sspeiche@gmail.com>",
+  "license": "CC-BY-1.0",
+  "bugs": {
+    "url": "http://github.com/sclorg/nodejs-ex/issues"
+  },
+  "homepage": "http://github.com/sclorg/nodejs-ex"
 }
