@@ -7,10 +7,10 @@ const router = express.Router();
 
 module.exports = () => {
   router.get("/", (request, response, next) => {
-    const initDb = function(callback) {
+    var initDb = function(callback) {
       if (request.mongoURL == null) return;
 
-      const mongodb = require("mongodb");
+      var mongodb = require("mongodb");
       if (mongodb == null) return;
 
       mongodb.connect(request.mongoURL, function(err, conn) {
