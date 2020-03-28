@@ -37,6 +37,7 @@ module.exports = () => {
 
       if (!db) {
         initDb(function(err) {});
+        console.log("No DB");
       }
       if (db) {
         var col = db.collection("counts");
