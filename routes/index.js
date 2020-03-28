@@ -50,8 +50,7 @@ module.exports = () => {
           }
           response.render("pages/index", {
             pageTitle: "Welcome",
-            pageCountMessage: count,
-            dbInfo: request.app.locals.dbDetails
+            pageCountMessage: count
           });
         });
       } else {
@@ -60,29 +59,23 @@ module.exports = () => {
           pageCountMessage: null
         });
       }
-
-      router.get("/pagecount", function(request, response) {
-        // try to initialize the db on every request if it's not already
-        // initialized.
-        if (!request.app.locals.db) {
-          initDb(function(err) {});
-        }
-        if (request.app.locals.db) {
-          request.app.locals.db
-            .collection("counts")
-            .count(function(err, count) {
-              response.send("{ pageCount: " + count + "}");
-            });
-        } else {
-          response.send("{ pageCount: -1 }");
-        }
-      });
-
-      initDb(function(err) {
-        console.log("Error connecting to Mongo. Message:\n" + err);
-      });
     } catch (err) {
       return next(err);
+    }
+  });
+
+  router.get("/pagecount", function(request, response) {
+    // try to initialize the db on every request if it's not already
+    // initialized.
+    if (!request.app.locals.db) {
+      initDb(function(err) {});
+    }
+    if (request.app.locals.db) {
+      request.app.locals.db.collection("counts").count(function(err, count) {
+        response.send("{ pageCount: " + count + "}");
+      });
+    } else {
+      response.send("{ pageCount: -1 }");
     }
   });
 
