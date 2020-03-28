@@ -29,8 +29,8 @@ module.exports = () => {
     };
 
     try {
-      var db = null;
-      var dbDetails = new Object();
+      var db = request.app.locals.db;
+      var dbDetails = request.app.locals.dbDetails;
 
       if (!db) {
         initDb(function(err) {});
@@ -54,7 +54,6 @@ module.exports = () => {
           pageTitle: "Welcome",
           pageCountMessage: null
         });
-        console.log(request.app.locals.mongoURL);
       }
 
       router.get("/pagecount", function(request, response) {

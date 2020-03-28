@@ -117,4 +117,7 @@ app.listen(port, ip, () => {
   console.log(`Express server listening on ${ip}:${port}!`);
 });
 
+request.app.locals.db = db;
+request.app.locals.dbDetails = dbDetails;
+
 module.exports = app;
