@@ -62,6 +62,7 @@ if (mongoURL == null) {
 app.locals.mongoURL = mongoURL;
 app.locals.mongoURLLabel = mongoURLLabel;
 app.locals.ip = ip;
+app.locals.mongoDatabase = mongoDatabase;
 
 var db = null;
 var dbDetails = new Object();
