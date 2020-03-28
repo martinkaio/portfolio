@@ -103,11 +103,11 @@ app.use((err, request, response, next) => {
   response.status(status);
   response.render("error");
 });
-
+/*
 initDb(function(err) {
   console.log("Error connecting to Mongo. Message:\n" + err);
 });
-
+*/
 app.listen(port, ip, () => {
   console.log(`Express server listening on ${ip}:${port}!`);
 });

@@ -13,7 +13,7 @@ module.exports = () => {
       const mongodb = require("mongodb");
       if (mongodb == null) return;
 
-      mongodb.connect(mongoURL, function(err, conn) {
+      mongodb.connect(router.mongoURL, function(err, conn) {
         if (err) {
           callback(err);
           return;
