@@ -10,7 +10,7 @@ const routes = require("./routes");
 
 const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 const ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
-const mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL;
+var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL;
 var mongoURLLabel = "";
 
 app.set("trust proxy", 1);
@@ -109,11 +109,11 @@ app.use((err, request, response, next) => {
   response.status(status);
   response.render("error");
 });
-/*
+
 initDb(function(err) {
   console.log("Error connecting to Mongo. Message:\n" + err);
 });
-*/
+
 app.listen(port, ip, () => {
   console.log(`Express server listening on ${ip}:${port}!`);
 });
