@@ -8,12 +8,12 @@ const router = express.Router();
 module.exports = () => {
   router.get("/", (request, response, next) => {
     const initDb = function(callback) {
-      if (router.mongoURL == null) return;
+      if (request.mongoURL == null) return;
 
       const mongodb = require("mongodb");
       if (mongodb == null) return;
 
-      mongodb.connect(router.mongoURL, function(err, conn) {
+      mongodb.connect(request.mongoURL, function(err, conn) {
         if (err) {
           callback(err);
           return;
@@ -21,10 +21,10 @@ module.exports = () => {
 
         db = conn;
         dbDetails.databaseName = db.databaseName;
-        dbDetails.url = router.mongoURLLabel;
+        dbDetails.url = request.mongoURLLabel;
         dbDetails.type = "MongoDB";
 
-        console.log("Connected to MongoDB at: %s", router.mongoURL);
+        console.log("Connected to MongoDB at: %s", request.mongoURL);
       });
     };
 
@@ -38,7 +38,7 @@ module.exports = () => {
       if (db) {
         var col = db.collection("counts");
         // Create a document with request IP and current time of request
-        col.insert({ ip: router.ip, date: Date.now() });
+        col.insert({ ip: request.ip, date: Date.now() });
         col.count(function(err, count) {
           if (err) {
             console.log("Error running count. Message:\n" + err);
@@ -56,7 +56,7 @@ module.exports = () => {
         });
       }
 
-      router.get("/pagecount", function(req, res) {
+      router.get("/pagecount", function(request, response) {
         // try to initialize the db on every request if it's not already
         // initialized.
         if (!db) {
@@ -64,10 +64,10 @@ module.exports = () => {
         }
         if (db) {
           db.collection("counts").count(function(err, count) {
-            res.send("{ pageCount: " + count + "}");
+            response.send("{ pageCount: " + count + "}");
           });
         } else {
-          res.send("{ pageCount: -1 }");
+          response.send("{ pageCount: -1 }");
         }
       });
 
