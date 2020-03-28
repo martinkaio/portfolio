@@ -19,28 +19,25 @@ module.exports = () => {
           return;
         }
 
-        db = conn;
-        dbDetails.databaseName = db.databaseName;
-        dbDetails.url = request.app.locals.mongoURLLabel;
-        dbDetails.type = "MongoDB";
+        request.app.locals.db = conn;
+        request.app.locals.dbDetails.databaseName =
+          request.app.locals.db.databaseName;
+        request.app.locals.dbDetails.url = request.app.locals.mongoURLLabel;
+        request.app.locals.dbDetails.type = "MongoDB";
 
         console.log("Connected to MongoDB at: %s", request.app.locals.mongoURL);
-        if (!db) {
+        if (!request.app.locals.db) {
           console.log("No DB");
         }
       });
     };
 
     try {
-      var db = request.app.locals.db;
-      var dbDetails = request.app.locals.dbDetails;
-
-      if (!db) {
+      if (!request.app.locals.db) {
         initDb(function(err) {});
-        console.log("No DB");
       }
-      if (db) {
-        var col = db.collection("counts");
+      if (request.app.locals.db) {
+        var col = request.app.locals.db.collection("counts");
         // Create a document with request IP and current time of request
         col.insert({ ip: request.app.locals.ip, date: Date.now() });
         col.count(function(err, count) {
@@ -50,7 +47,7 @@ module.exports = () => {
           response.render("pages/index", {
             pageTitle: "Welcome",
             pageCountMessage: count,
-            dbInfo: dbDetails
+            dbInfo: request.app.locals.dbDetails
           });
         });
       } else {
@@ -63,13 +60,15 @@ module.exports = () => {
       router.get("/pagecount", function(request, response) {
         // try to initialize the db on every request if it's not already
         // initialized.
-        if (!db) {
+        if (!request.app.locals.db) {
           initDb(function(err) {});
         }
-        if (db) {
-          db.collection("counts").count(function(err, count) {
-            response.send("{ pageCount: " + count + "}");
-          });
+        if (request.app.locals.db) {
+          request.app.locals.db
+            .collection("counts")
+            .count(function(err, count) {
+              response.send("{ pageCount: " + count + "}");
+            });
         } else {
           response.send("{ pageCount: -1 }");
         }
