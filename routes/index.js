@@ -25,6 +25,9 @@ module.exports = () => {
         dbDetails.type = "MongoDB";
 
         console.log("Connected to MongoDB at: %s", request.app.locals.mongoURL);
+        if (!db) {
+          console.log("No DB");
+        }
       });
     };
 
