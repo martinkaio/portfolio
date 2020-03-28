@@ -10,10 +10,13 @@ module.exports = () => {
     var initDb = function(callback) {
       if (request.app.locals.mongoURL == null) return;
 
-      var request.app.locals.mongodb = require("mongodb");
+      request.app.locals.mongodb = require("mongodb");
       if (request.app.locals.mongodb == null) return;
 
-      request.app.locals.mongodb.connect(request.app.locals.mongoURL, function(err, conn) {
+      request.app.locals.mongodb.connect(request.app.locals.mongoURL, function(
+        err,
+        conn
+      ) {
         if (err) {
           callback(err);
           return;
