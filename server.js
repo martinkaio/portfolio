@@ -2,10 +2,11 @@ const express = require("express");
 const path = require("path");
 const cookieSession = require("cookie-session");
 const createError = require("http-errors");
-const routes = require("./routes");
+
 Object.assign = require("object-assign");
 
 const app = express();
+const routes = require("./routes");
 
 const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 const ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
@@ -57,6 +58,10 @@ if (mongoURL == null) {
     mongoURL += mongoHost + ":" + mongoPort + "/" + mongoDatabase;
   }
 }
+
+app.locals.mongoURL = mongoURL;
+app.locals.mongoURLLabel = mongoURLLabel;
+app.locals.ip = ip;
 
 var db = null;
 var dbDetails = new Object();

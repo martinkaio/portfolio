@@ -8,12 +8,12 @@ const router = express.Router();
 module.exports = () => {
   router.get("/", (request, response, next) => {
     var initDb = function(callback) {
-      if (request.mongoURL == null) return;
+      if (request.app.locals.mongoURL == null) return;
 
       var mongodb = require("mongodb");
       if (mongodb == null) return;
 
-      mongodb.connect(request.mongoURL, function(err, conn) {
+      mongodb.connect(request.app.locals.mongoURL, function(err, conn) {
         if (err) {
           callback(err);
           return;
@@ -21,10 +21,10 @@ module.exports = () => {
 
         db = conn;
         dbDetails.databaseName = db.databaseName;
-        dbDetails.url = request.mongoURLLabel;
+        dbDetails.url = request.app.locals.mongoURLLabel;
         dbDetails.type = "MongoDB";
 
-        console.log("Connected to MongoDB at: %s", request.mongoURL);
+        console.log("Connected to MongoDB at: %s", request.app.locals.mongoURL);
       });
     };
 
@@ -38,7 +38,7 @@ module.exports = () => {
       if (db) {
         var col = db.collection("counts");
         // Create a document with request IP and current time of request
-        col.insert({ ip: request.ip, date: Date.now() });
+        col.insert({ ip: request.app.locals.ip, date: Date.now() });
         col.count(function(err, count) {
           if (err) {
             console.log("Error running count. Message:\n" + err);
@@ -54,6 +54,7 @@ module.exports = () => {
           pageTitle: "Welcome",
           pageCountMessage: null
         });
+        console.log(request.app.locals.mongoURL);
       }
 
       router.get("/pagecount", function(request, response) {
