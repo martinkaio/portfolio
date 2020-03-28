@@ -15,14 +15,14 @@ module.exports = () => {
 
       request.app.locals.mongodb.connect(request.app.locals.mongoURL, function(
         err,
-        conn
+        client
       ) {
         if (err) {
           callback(err);
           return;
         }
 
-        request.app.locals.db = conn;
+        request.app.locals.db = client.db;
         request.app.locals.dbDetails.databaseName =
           request.app.locals.db.databaseName;
         request.app.locals.dbDetails.url = request.app.locals.mongoURLLabel;
