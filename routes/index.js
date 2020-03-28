@@ -37,13 +37,14 @@ module.exports = () => {
 
     try {
       if (!request.app.locals.db) {
+        console.log("No DB");
         initDb(function(err) {});
       }
       if (request.app.locals.db) {
         var col = request.app.locals.db.collection("counts");
         // Create a document with request IP and current time of request
-        col.insert({ ip: request.app.locals.ip, date: Date.now() });
-        col.count(function(err, count) {
+        col.insertOne({ ip: request.app.locals.ip, date: Date.now() });
+        col.countDocuments(function(err, count) {
           if (err) {
             console.log("Error running count. Message:\n" + err);
           }
