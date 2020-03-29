@@ -1,4 +1,4 @@
-var initDb = function(callback, url, dbDetails, urlLabel, database) {
+var initDb = function(callback, app, url, dbDetails, urlLabel, database) {
   if (url == null) return;
 
   var mongodb = require("mongodb");
@@ -10,11 +10,10 @@ var initDb = function(callback, url, dbDetails, urlLabel, database) {
       return;
     }
 
-    request.app.locals.db = client.db(database);
-    request.app.locals.dbDetails.databaseName =
-      request.app.locals.db.databaseName;
-    request.app.locals.dbDetails.url = urlLabel;
-    request.app.locals.dbDetails.type = "MongoDB";
+    app.locals.db = client.db(database);
+    app.locals.dbDetails.databaseName = app.locals.db.databaseName;
+    app.locals.dbDetails.url = urlLabel;
+    app.locals.dbDetails.type = "MongoDB";
 
     console.log("Connected to MongoDB at: %s", url);
     if (!request.app.locals.db) {

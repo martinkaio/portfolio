@@ -9,6 +9,7 @@ module.exports = () => {
       if (!request.app.locals.db) {
         initDb(
           function(err) {},
+          request.app,
           request.app.locals.mongoURL,
           request.app.locals.dbDetails,
           request.app.locals.mongoURLLabel,
