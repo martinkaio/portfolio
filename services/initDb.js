@@ -1,10 +1,10 @@
 var initDb = function(callback, url, dbDetails, urlLabel, database) {
   if (url == null) return;
 
-  request.app.locals.mongodb = require("mongodb");
-  if (request.app.locals.mongodb == null) return;
+  var mongodb = require("mongodb");
+  if (mongodb == null) return;
 
-  request.app.locals.mongodb.connect(url, function(err, client) {
+  mongodb.connect(url, function(err, client) {
     if (err) {
       callback(err);
       return;
@@ -18,7 +18,7 @@ var initDb = function(callback, url, dbDetails, urlLabel, database) {
 
     console.log("Connected to MongoDB at: %s", url);
     if (!request.app.locals.db) {
-      console.log("No DB");
+      console.log("No DB %s", url);
     }
   });
 };
