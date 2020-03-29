@@ -2,47 +2,27 @@ const express = require("express");
 
 const lipsumRoute = require("./lipsum");
 const titleRoute = require("./title");
+var initDb = require("../services/initDb");
 
 const router = express.Router();
 
 module.exports = () => {
   router.get("/", (request, response, next) => {
-    var initDb = function(callback) {
-      if (request.app.locals.mongoURL == null) return;
-
-      request.app.locals.mongodb = require("mongodb");
-      if (request.app.locals.mongodb == null) return;
-
-      request.app.locals.mongodb.connect(request.app.locals.mongoURL, function(
-        err,
-        client
-      ) {
-        if (err) {
-          callback(err);
-          return;
-        }
-
-        request.app.locals.db = client.db(request.app.locals.mongoDatabase);
-        request.app.locals.dbDetails.databaseName =
-          request.app.locals.db.databaseName;
-        request.app.locals.dbDetails.url = request.app.locals.mongoURLLabel;
-        request.app.locals.dbDetails.type = "MongoDB";
-
-        console.log("Connected to MongoDB at: %s", request.app.locals.mongoURL);
-        if (!request.app.locals.db) {
-          console.log("No DB");
-        }
-      });
-    };
-
     try {
       if (!request.app.locals.db) {
         console.log("No DB");
-        initDb(function(err) {});
+        initDb(
+          function(err) {},
+          request.app.locals.mongoURL,
+          request.app.locals.dbDetails,
+          request.app.locals.mongoURLLabel,
+          request.app.locals.mongoDatabase
+        );
       }
       if (request.app.locals.db) {
         var col = request.app.locals.db.collection("counts");
         // Create a document with request IP and current time of request
+
         col.insertOne({ ip: request.app.locals.ip, date: Date.now() });
         col.countDocuments(function(err, count) {
           if (err) {
@@ -68,12 +48,20 @@ module.exports = () => {
     // try to initialize the db on every request if it's not already
     // initialized.
     if (!request.app.locals.db) {
-      initDb(function(err) {});
+      initDb(
+        function(err) {},
+        request.app.locals.mongoURL,
+        request.app.locals.dbDetails,
+        request.app.locals.mongoURLLabel,
+        request.app.locals.mongoDatabase
+      );
     }
     if (request.app.locals.db) {
-      request.app.locals.db.collection("counts").count(function(err, count) {
-        response.send("{ pageCount: " + count + "}");
-      });
+      request.app.locals.db
+        .collection("counts")
+        .countDocuments(function(err, count) {
+          response.send("{ pageCount: " + count + "}");
+        });
     } else {
       response.send("{ pageCount: -1 }");
     }

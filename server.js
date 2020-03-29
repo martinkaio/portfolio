@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieSession = require("cookie-session");
 const createError = require("http-errors");
+var initDb = require("./services/initDb");
 
 Object.assign = require("object-assign");
 
@@ -67,27 +68,6 @@ app.locals.mongoDatabase = mongoDatabase;
 var db = null;
 var dbDetails = new Object();
 
-var initDb = function(callback) {
-  if (mongoURL == null) return;
-
-  var mongodb = require("mongodb");
-  if (mongodb == null) return;
-
-  mongodb.connect(mongoURL, function(err, conn) {
-    if (err) {
-      callback(err);
-      return;
-    }
-
-    db = conn;
-    dbDetails.databaseName = db.databaseName;
-    dbDetails.url = mongoURLLabel;
-    dbDetails.type = "MongoDB";
-
-    console.log("Connected to MongoDB at: %s", mongoURL);
-  });
-};
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "./views"));
 
@@ -110,9 +90,15 @@ app.use((err, request, response, next) => {
   response.render("error");
 });
 
-initDb(function(err) {
-  console.log("Error connecting to Mongo. Message:\n" + err);
-});
+initDb(
+  function(err) {
+    console.log("Error connecting to Mongo. Message:\n" + err);
+  },
+  mongoURL,
+  dbDetails,
+  mongoURLLabel,
+  mongoDatabase
+);
 
 app.listen(port, ip, () => {
   console.log(`Express server listening on ${ip}:${port}!`);

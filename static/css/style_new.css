@@ -26,24 +26,21 @@ h4,
 h5,
 h6 {
   font-family: "Halant", "Courier New", Courier, monospace;
-  font-size: 1.4em;
 }
 
 .gradient-bg {
-  background: linear-gradient(110deg, #222629, #61892f);
+  background: linear-gradient(110deg, #222629, #222629, #305230, #547729);
   color: #dce2e6;
   height: 100%;
-}
-
-#youtube {
-  text-align: center;
 }
 
 .iframe-container {
   position: relative;
   overflow: hidden;
-  padding-top: 56.25%;
   margin-right: 1px;
+  max-width: 1280px;
+  max-height: 720px;
+  padding-top: 56.25%;
 }
 
 iframe {
@@ -53,11 +50,15 @@ iframe {
   width: 100%;
   height: 100%;
   border: 1px solid black;
+  max-width: 1280px;
+  max-height: 720px;
 }
 
 @media (min-width: 1280px) {
-  iframe {
-    width: 1280px;
-    height: 720px;
+  .iframe-container {
+    padding-top: 720px;
   }
+}
+
+footer {
 }

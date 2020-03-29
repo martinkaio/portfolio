@@ -125,7 +125,7 @@ nav.main-menu li.active > a,
 }
 .area {
   float: left;
-  background: #e2e2e2;
+  background: linear-gradient(110deg, #222629, #61892f);
   width: 100%;
   height: 100%;
 }

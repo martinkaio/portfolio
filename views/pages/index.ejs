@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="css/nav-bar.css" />
     <style>
       code {
-      background-color: white;
-      border: 1px solid #ccc;
-      padding: 1px 5px;
-      color: #888;
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 1px 5px;
+        color: #888;
       }
-    
     </style>
     <title><%= siteName %> | <%= pageTitle %></title>
   </head>
@@ -109,21 +108,18 @@
           <button type="submit">Submit</button>
         </fieldset>
       </form>
-      <section>
-        <h2>Request information</h2>
-          <p>Page view count:
-            <% if (pageCountMessage) { %>
-              <span class="code" id="count-value"><%=pageCountMessage%></span>
-              </p>
-                
-            <% } else { %>
-              <span class="code" id="count-value">No database configured</span>
-            </p>
-          <%} %>
-      </section>
     </main>
     <br />
     <div class="heart"></div>
-    <footer>&copy;Martin Kaio</footer>
+
+    <footer>
+      <% if (pageCountMessage) { %>
+      <span id="view-count"><%=pageCountMessage%></span>
+
+      <% } else { %>
+      <span id="view-count">-1</span>
+
+      <%} %> &copy;Martin Kaio
+    </footer>
   </body>
 </html>

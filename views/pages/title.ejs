@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="gradient-bg">
+<html>
   <head>
     <link
       href="https://fonts.googleapis.com/css2?family=Halant&family=Nunito+Sans"
@@ -11,16 +11,28 @@
     <link rel="stylesheet" href="css/nav-bar.css" />
     <title><%= siteName %> | <%= pageTitle %></title>
   </head>
-  <body>
+  <body class="gradient-bg">
     <%- include('./partials/nav-bar') %> <%- include('./partials/lipsum') %>
     <div class="iframe-container">
       <iframe
-        width="720"
-        height="480"
         src="https://www.youtube-nocookie.com/embed/vMJLepZVbQs"
         allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
     </div>
+
+    <footer>
+      <section id="view-count">
+        <p>
+          <% if (pageCountMessage) { %>
+            <span><%=pageCountMessage%></span>
+            </p>
+              
+          <% } else { %>
+            <span>-1</span>
+          </p>
+        <%} %>
+        </section>
+    </footer>
   </body>
 </html>
