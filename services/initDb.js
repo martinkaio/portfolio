@@ -16,7 +16,7 @@ var initDb = function(callback, app, url, dbDetails, urlLabel, database) {
     app.locals.dbDetails.type = "MongoDB";
 
     console.log("Connected to MongoDB at: %s", url);
-    if (!request.app.locals.db) {
+    if (!app.locals.db) {
       console.log("No DB %s", url);
     }
   });
