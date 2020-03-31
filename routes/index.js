@@ -23,8 +23,23 @@ module.exports = () => {
       if (request.app.locals.db) {
         var col = request.app.locals.db.collection("counts");
         // Create a document with request IP and current time of request
+        var visitorIp =
+          request.headers["x-forwarded-for"] ||
+          request.connection.remoteAddress ||
+          request.socket.remoteAddress ||
+          (request.connection.socket
+            ? request.connection.socket.remoteAddress
+            : null);
 
-        col.insertOne({ ip: request.app.locals.ip, date: Date.now() });
+        if (
+          !col
+            .find({ ip: visitorIp, date: { $gt: Date.now() - 900000 } })
+            .sort({ date: -1 })
+            .limit(1)
+        ) {
+          col.insertOne({ ip: visitorIp, date: Date.now() });
+        }
+
         col.countDocuments(function(err, count) {
           if (err) {
             console.log("Error running count. Message:\n" + err);
