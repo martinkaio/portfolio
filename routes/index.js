@@ -10,7 +10,7 @@ module.exports = () => {
   router.get("/", (request, response, next) => {
     try {
       request.session.pageCountMessage = null;
-      response.locals.pageCountMessage = request.session.pageCountMessage;
+
       request.session.visitorIp =
         request.headers["x-forwarded-for"] ||
         request.connection.remoteAddress ||
@@ -62,7 +62,6 @@ module.exports = () => {
           pageTitle: "Welcome",
           pageCountMessage: null
         });
-        request.session.pageCountMessage = null;
       }
     } catch (err) {
       return next(err);

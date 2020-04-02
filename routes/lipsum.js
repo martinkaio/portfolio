@@ -5,8 +5,10 @@ const router = express.Router();
 module.exports = () => {
   router.get("/", (request, response, next) => {
     try {
-      response.locals.pageCountMessage = request.session.pageCountMessage;
-      response.render("pages/lipsum", { pageTitle: "Lipsum" });
+      response.render("pages/lipsum", {
+        pageTitle: "Lipsum",
+        pageCountMessage: request.session.pageCountMessage
+      });
     } catch (err) {
       return next(err);
     }

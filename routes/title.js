@@ -25,14 +25,13 @@ module.exports = () => {
               pageTitle: "Title",
               pageCountMessage: count
             });
+            request.session.pageCountMessage = count;
           });
-        request.session.pageCountMessage = count;
       } else {
         response.render("pages/title", {
           pageTitle: "Title",
           pageCountMessage: null
         });
-        request.session.pageCountMessage = null;
       }
     } catch (err) {
       return next(err);
