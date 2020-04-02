@@ -113,13 +113,7 @@
     <div class="heart"></div>
 
     <footer>
-      <% if (pageCountMessage) { %>
-      <span id="view-count"><%=pageCountMessage%></span>
-
-      <% } else { %>
-      <span id="view-count">-1</span>
-
-      <%} %> &copy;Martin Kaio
+      <%- include('./partials/footer') %>
     </footer>
   </body>
 </html>

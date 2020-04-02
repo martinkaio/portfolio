@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html class="gradient-bg">
   <head>
     <link
       href="https://fonts.googleapis.com/css2?family=Halant&family=Nunito+Sans"
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/nav-bar.css" />
     <title><%= siteName %> | <%= pageTitle %></title>
   </head>
-  <body class="gradient-bg">
+  <body>
     <%- include('./partials/nav-bar') %> <%- include('./partials/lipsum') %>
     <div class="iframe-container">
       <iframe
@@ -22,17 +22,7 @@
     </div>
 
     <footer>
-      <section id="view-count">
-        <p>
-          <% if (pageCountMessage) { %>
-            <span><%=pageCountMessage%></span>
-            </p>
-              
-          <% } else { %>
-            <span>-1</span>
-          </p>
-        <%} %>
-        </section>
+      <%- include('./partials/footer') %>
     </footer>
   </body>
 </html>

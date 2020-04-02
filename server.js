@@ -19,9 +19,15 @@ app.set("trust proxy", 1);
 app.use(
   cookieSession({
     name: "session",
-    keys: ["key1", "key2"]
+    keys: ["wRsM88ay9b", "R9Kg6tzwMB"],
+    maxAge: 900000
   })
 );
+
+app.use(function(request, response, next) {
+  request.session.nowInMinutes = Math.floor(Date.now() / 60000);
+  next();
+});
 
 if (mongoURL == null) {
   var mongoHost, mongoPort, mongoDatabase, mongoPassword, mongoUser;

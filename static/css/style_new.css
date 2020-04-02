@@ -17,6 +17,7 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 h1,
@@ -31,7 +32,12 @@ h6 {
 .gradient-bg {
   background: linear-gradient(110deg, #222629, #222629, #305230, #547729);
   color: #dce2e6;
-  height: 100%;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .iframe-container {
@@ -60,5 +66,40 @@ iframe {
   }
 }
 
-footer {
+.ftr-section a:hover {
+  text-decoration: none;
+}
+.ftr-section {
+  position: relative;
+  padding: 1px 2px;
+  background-color: rgba(10, 28, 46, 0.3);
+  width: 100%;
+}
+
+.ftr-section,
+.copyright {
+  color: #e5e5e5;
+  font-weight: 600;
+}
+.ftr-copyright,
+.ftr-section a {
+  color: #f2ff49;
+  margin-left: 3px;
+  padding-right: 3px;
+}
+.ftr-section,
+.ftr-section p {
+  font-size: 16px;
+  font-weight: 400;
+}
+.ftr-copyright,
+.ftr-section p,
+.ftr-section span {
+  color: #d1caca;
+}
+.ftr-section,
+.ftr-copyright p,
+.ftr-copyright,
+.ftr-section a:hover {
+  color: #6c6d83;
 }

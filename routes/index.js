@@ -9,6 +9,16 @@ const router = express.Router();
 module.exports = () => {
   router.get("/", (request, response, next) => {
     try {
+      request.session.pageCountMessage = null;
+      response.locals.pageCountMessage = request.session.pageCountMessage;
+      request.session.visitorIp =
+        request.headers["x-forwarded-for"] ||
+        request.connection.remoteAddress ||
+        request.socket.remoteAddress ||
+        (request.connection.socket
+          ? request.connection.socket.remoteAddress
+          : null);
+
       if (!request.app.locals.db) {
         console.log("No DB");
         initDb(
@@ -23,21 +33,18 @@ module.exports = () => {
       if (request.app.locals.db) {
         var col = request.app.locals.db.collection("counts");
         // Create a document with request IP and current time of request
-        var visitorIp =
-          request.headers["x-forwarded-for"] ||
-          request.connection.remoteAddress ||
-          request.socket.remoteAddress ||
-          (request.connection.socket
-            ? request.connection.socket.remoteAddress
-            : null);
 
         if (
           !col
-            .find({ ip: visitorIp, date: { $gt: Date.now() - 900000 } })
+            .find({
+              ip: request.session.visitorIp,
+              date: { $gt: Date.now() - 900000 }
+            })
             .sort({ date: -1 })
-            .limit(1)
+            .limit(1) &&
+          request.session.isNew()
         ) {
-          col.insertOne({ ip: visitorIp, date: Date.now() });
+          col.insertOne({ ip: request.session.visitorIp, date: Date.now() });
         }
 
         col.countDocuments(function(err, count) {
@@ -48,12 +55,14 @@ module.exports = () => {
             pageTitle: "Welcome",
             pageCountMessage: count
           });
+          request.session.pageCountMessage = count;
         });
       } else {
         response.render("pages/index", {
           pageTitle: "Welcome",
           pageCountMessage: null
         });
+        request.session.pageCountMessage = null;
       }
     } catch (err) {
       return next(err);
