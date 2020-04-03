@@ -51,11 +51,11 @@ module.exports = () => {
           if (err) {
             console.log("Error running count. Message:\n" + err);
           }
+          request.session.pageCountMessage = count;
           response.render("pages/index", {
             pageTitle: "Welcome",
             pageCountMessage: count
           });
-          request.session.pageCountMessage = count;
         });
       } else {
         response.render("pages/index", {
