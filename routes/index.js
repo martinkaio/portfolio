@@ -59,7 +59,7 @@ module.exports = () => {
         col.aggregate(
           [
             {
-              $group: { _id: null, total: { $sum: $visits } }
+              $group: { _id: null, total: { $sum: "$visits" } }
             }
           ],
           (err, result) => {
