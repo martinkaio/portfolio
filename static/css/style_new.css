@@ -70,9 +70,11 @@ iframe {
   text-decoration: none;
 }
 .ftr-section {
-  position: relative;
   padding: 1px 2px;
   background-color: rgba(10, 28, 46, 0.3);
+  width: 100%;
+  position: fixed;
+  bottom: 0;
   width: 100%;
 }
 

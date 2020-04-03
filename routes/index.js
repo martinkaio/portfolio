@@ -35,28 +35,47 @@ module.exports = () => {
         // Create a document with request IP and current time of request
 
         if (
-          !col
-            .find({
-              ip: request.session.visitorIp,
-              date: { $gt: Date.now() - 900000 }
-            })
-            .sort({ date: -1 })
-            .limit(1) &&
-          request.session.isNew()
+          !col.find({
+            ip: request.session.visitorIp
+          })
         ) {
-          col.insertOne({ ip: request.session.visitorIp, date: Date.now() });
+          col.insertOne({
+            ip: request.session.visitorIp,
+            date: Date.now(),
+            count: 1
+          });
+        } else if (
+          !col.find({
+            ip: request.session.visitorIp,
+            date: { $gt: Date.now() - 900000 }
+          })
+        ) {
+          col.updateOne(
+            { ip: request.session.visitorIp },
+            { $set: { date: Date.now() }, $inc: { counts: 1 } }
+          );
         }
 
-        col.countDocuments(function(err, count) {
-          if (err) {
-            console.log("Error running count. Message:\n" + err);
+        col.aggregate(
+          [
+            {
+              $group: { _id: null, total: { $sum: $visits } }
+            }
+          ],
+          (err, result) => {
+            try {
+              count = JSON.parse(result)["total"];
+              request.session.pageCountMessage = count;
+              response.render("pages/index", {
+                pageTitle: "Welcome",
+                pageCountMessage: count
+              });
+            } catch (err) {
+              console.log("Error running count. Message:\n" + err);
+              return next(err);
+            }
           }
-          request.session.pageCountMessage = count;
-          response.render("pages/index", {
-            pageTitle: "Welcome",
-            pageCountMessage: count
-          });
-        });
+        );
       } else {
         response.render("pages/index", {
           pageTitle: "Welcome",
