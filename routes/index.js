@@ -72,6 +72,13 @@ module.exports = () => {
               });
             } catch (err) {
               console.log("Error running count. Message:\n" + err);
+              console.log(
+                col.aggregate([
+                  {
+                    $group: { _id: null, total: { $sum: "$visits" } }
+                  }
+                ])
+              );
               return next(err);
             }
           });
