@@ -42,7 +42,7 @@ module.exports = () => {
           col.insertOne({
             ip: request.session.visitorIp,
             date: Date.now(),
-            count: 1
+            visits: 1
           });
         } else if (
           !col.find({
@@ -52,7 +52,7 @@ module.exports = () => {
         ) {
           col.updateOne(
             { ip: request.session.visitorIp },
-            { $set: { date: Date.now() }, $inc: { counts: 1 } }
+            { $set: { date: Date.now() }, $inc: { visits: 1 } }
           );
         }
 
