@@ -56,13 +56,13 @@ module.exports = () => {
           );
         }
 
-        col.aggregate(
-          [
+        col
+          .aggregate([
             {
               $group: { _id: null, total: { $sum: "$visits" } }
             }
-          ],
-          (err, result) => {
+          ])
+          .toArray((err, result) => {
             try {
               count = JSON.parse(result).total;
               request.session.pageCountMessage = count;
@@ -74,8 +74,7 @@ module.exports = () => {
               console.log("Error running count. Message:\n" + err);
               return next(err);
             }
-          }
-        );
+          });
       } else {
         response.render("pages/index", {
           pageTitle: "Welcome",
@@ -87,12 +86,12 @@ module.exports = () => {
     }
   });
 
-  router.get("/pagecount", function(request, response) {
+  router.get("/pagecount", (request, response) => {
     // try to initialize the db on every request if it's not already
     // initialized.
     if (!request.app.locals.db) {
       initDb(
-        function(err) {},
+        err => {},
         request.app,
         request.app.locals.mongoURL,
         request.app.locals.dbDetails,
