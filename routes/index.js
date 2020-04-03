@@ -64,7 +64,7 @@ module.exports = () => {
           ],
           (err, result) => {
             try {
-              count = JSON.parse(result)["total"];
+              count = JSON.parse(result).total;
               request.session.pageCountMessage = count;
               response.render("pages/index", {
                 pageTitle: "Welcome",
