@@ -39,6 +39,7 @@ module.exports = () => {
             ip: request.session.visitorIp
           })
         ) {
+          console.log("no IP");
           col.insertOne({
             ip: request.session.visitorIp,
             date: Date.now(),
@@ -50,6 +51,7 @@ module.exports = () => {
             date: { $gt: Date.now() - 900000 }
           })
         ) {
+          console.log("nothing lately");
           col.updateOne(
             { ip: request.session.visitorIp },
             { $set: { date: Date.now() }, $inc: { visits: 1 } }
@@ -57,9 +59,11 @@ module.exports = () => {
         }
 
         try {
+          console.log("aggregate");
           count = col.aggregate({
             $group: { _id: null, total: { $sum: "$visits" } }
           }).total;
+          console.log(count);
           request.session.pageCountMessage = count;
           response.render("pages/index", {
             pageTitle: "Welcome",
