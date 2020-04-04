@@ -33,7 +33,19 @@ module.exports = () => {
       if (request.app.locals.db) {
         var col = request.app.locals.db.collection("visitors");
         // Create a document with request IP and current time of request
-
+        console.log(
+          "findIp " +
+            col.find({
+              ip: request.session.visitorIp
+            })
+        );
+        console.log(
+          "findIp(t) " +
+            col.find({
+              ip: request.session.visitorIp,
+              date: { $gt: Date.now() - 900000 }
+            })
+        );
         if (
           !col.find({
             ip: request.session.visitorIp
