@@ -62,7 +62,7 @@ module.exports = () => {
           },
           (err, result) => {
             try {
-              count = JSON.parse(result)[0].total;
+              count = result[0].total;
               request.session.pageCountMessage = count;
               response.render("pages/index", {
                 pageTitle: "Welcome",
