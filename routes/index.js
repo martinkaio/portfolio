@@ -42,6 +42,14 @@ module.exports = () => {
               .toArray()
         );
         console.log(
+          "!findIp " +
+            !col
+              .find({
+                ip: "0.0.0.2"
+              })
+              .toArray()
+        );
+        console.log(
           "findIp(t) " +
             !col
               .find({
