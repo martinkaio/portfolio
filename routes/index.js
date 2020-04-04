@@ -73,7 +73,8 @@ module.exports = () => {
             ip: "0.0.0.0"
           })
           .toArray((err, items) => {
-            console.log("findIp " + items);
+            console.log("findIp " + JSON.parse(items));
+            console.log(items[0].ip);
           });
 
         if (
@@ -109,17 +110,18 @@ module.exports = () => {
                 $group: { _id: null, total: { $sum: "$visits" } }
               })
               .toArray();
-            request.session.pageCountMessage = count.total;
-            response.render("pages/index", {
-              pageTitle: "Welcome",
-              pageCountMessage: count.total
-            });
+            return count;
           };
 
+          var count = visitCount();
+          request.session.pageCountMessage = count.total;
+          response.render("pages/index", {
+            pageTitle: "Welcome",
+            pageCountMessage: count.total
+          });
           console.log(count);
         } catch (err) {
           console.log("Error running count. Message:\n" + err);
-          console.log(count);
           return next(err);
         }
       } else {
