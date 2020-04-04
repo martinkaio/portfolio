@@ -78,11 +78,9 @@ module.exports = () => {
           });
 
         if (
-          !col
-            .find({
-              ip: request.session.visitorIp
-            })
-            .then()
+          !col.find({
+            ip: request.session.visitorIp
+          })
         ) {
           console.log("no IP");
           col.insertOne({
