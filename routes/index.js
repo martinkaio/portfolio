@@ -46,6 +46,16 @@ module.exports = () => {
               date: { $gt: Date.now() - 900000 }
             })
         );
+        col.find().toArray((err, items) => {
+          console.log(items);
+        });
+        col
+          .find({
+            ip: request.session.visitorIp
+          })
+          .toArray((err, items) => {
+            console.log("findIp " + items);
+          });
         if (
           !col.find({
             ip: request.session.visitorIp
