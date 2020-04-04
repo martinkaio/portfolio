@@ -56,26 +56,20 @@ module.exports = () => {
           );
         }
 
-        col
-          .aggregate({
+        try {
+          count = col.aggregate({
             $group: { _id: null, total: { $sum: "$visits" } }
-          })
-          .next((err, result) => {
-            try {
-              count = result.total;
-              console.log(result);
-              console.log(count);
-              request.session.pageCountMessage = count;
-              response.render("pages/index", {
-                pageTitle: "Welcome",
-                pageCountMessage: count
-              });
-            } catch (err) {
-              console.log("Error running count. Message:\n" + err);
-              console.log(result);
-              return next(err);
-            }
+          }).total;
+          request.session.pageCountMessage = count;
+          response.render("pages/index", {
+            pageTitle: "Welcome",
+            pageCountMessage: count
           });
+        } catch (err) {
+          console.log("Error running count. Message:\n" + err);
+          console.log(count);
+          return next(err);
+        }
       } else {
         response.render("pages/index", {
           pageTitle: "Welcome",
