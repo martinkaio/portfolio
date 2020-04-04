@@ -33,6 +33,8 @@ module.exports = () => {
       if (request.app.locals.db) {
         var col = request.app.locals.db.collection("visitors");
         // Create a document with request IP and current time of request
+        /*
+        false
         console.log(
           "findIp " +
             !col
@@ -41,6 +43,7 @@ module.exports = () => {
               })
               .toArray()
         );
+        false
         console.log(
           "!findIp " +
             !col
@@ -49,6 +52,7 @@ module.exports = () => {
               })
               .toArray()
         );
+        false
         console.log(
           "findIp(t) " +
             !col
@@ -58,16 +62,20 @@ module.exports = () => {
               })
               .toArray()
         );
+        */
+        /* Works
         col.find().toArray((err, items) => {
           console.log(items);
-        });
+        });*/
+
         col
           .find({
             ip: "0.0.0.0"
           })
           .toArray((err, items) => {
-            console.log("findIp " + items);
+            console.log("findIp " + items[0]);
           });
+
         if (
           !col.find({
             ip: request.session.visitorIp
@@ -98,7 +106,7 @@ module.exports = () => {
             .aggregate({
               $group: { _id: null, total: { $sum: "$visits" } }
             })
-            .toArray()[0];
+            .toArray();
           console.log(count);
 
           request.session.pageCountMessage = count;
