@@ -64,8 +64,7 @@ module.exports = () => {
             .aggregate({
               $group: { _id: null, total: { $sum: "$visits" } }
             })
-            .toArray()
-            .next();
+            .toArray()[0];
           console.log(count);
 
           request.session.pageCountMessage = count;
