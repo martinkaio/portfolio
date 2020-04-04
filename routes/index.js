@@ -57,11 +57,9 @@ module.exports = () => {
         }
 
         col.aggregate(
-          [
-            {
-              $group: { _id: null, total: { $sum: "$visits" } }
-            }
-          ],
+          {
+            $group: { _id: null, total: { $sum: "$visits" } }
+          },
           (err, result) => {
             try {
               count = JSON.parse(result)[0].total;
