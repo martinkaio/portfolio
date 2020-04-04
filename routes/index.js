@@ -31,7 +31,7 @@ module.exports = () => {
         );
       }
       if (request.app.locals.db) {
-        var col = request.app.locals.db.collection("counts");
+        var col = request.app.locals.db.collection("visitors");
         // Create a document with request IP and current time of request
 
         if (
@@ -63,6 +63,8 @@ module.exports = () => {
           .next((err, result) => {
             try {
               count = result.total;
+              console.log(result);
+              console.log(count);
               request.session.pageCountMessage = count;
               response.render("pages/index", {
                 pageTitle: "Welcome",

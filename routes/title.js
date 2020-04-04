@@ -19,7 +19,7 @@ module.exports = () => {
       }
       if (request.app.locals.db) {
         request.app.locals.db
-          .collection("counts")
+          .collection("visitors")
           .countDocuments(function(err, count) {
             response.render("pages/title", {
               pageTitle: "Title",
