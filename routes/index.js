@@ -72,9 +72,8 @@ module.exports = () => {
           .find({
             ip: "0.0.0.0"
           })
-          .toArray()
-          .then((err, items) => {
-            console.log("findIp " + items[0]);
+          .toArray((err, items) => {
+            console.log("findIp " + items);
           });
 
         if (
@@ -103,27 +102,21 @@ module.exports = () => {
 
         try {
           console.log("aggregate");
-          count = col
-            .aggregate({
-              $group: { _id: null, total: { $sum: "$visits" } }
-            })
-            .toArray()
-            .then((err, result) => {
-              console.log(result);
 
-              request.session.pageCountMessage = result.total;
-              response.render("pages/index", {
-                pageTitle: "Welcome",
-                pageCountMessage: count
-              });
+          var visitCount = async () => {
+            var count = await col
+              .aggregate({
+                $group: { _id: null, total: { $sum: "$visits" } }
+              })
+              .toArray();
+            request.session.pageCountMessage = count.total;
+            response.render("pages/index", {
+              pageTitle: "Welcome",
+              pageCountMessage: count.total
             });
-          console.log(count);
+          };
 
-          request.session.pageCountMessage = count;
-          response.render("pages/index", {
-            pageTitle: "Welcome",
-            pageCountMessage: count
-          });
+          console.log(count);
         } catch (err) {
           console.log("Error running count. Message:\n" + err);
           console.log(count);
