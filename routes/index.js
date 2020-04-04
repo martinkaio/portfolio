@@ -72,14 +72,17 @@ module.exports = () => {
           .find({
             ip: "0.0.0.0"
           })
-          .toArray((err, items) => {
+          .toArray()
+          .then((err, items) => {
             console.log("findIp " + items[0]);
           });
 
         if (
-          !col.find({
-            ip: request.session.visitorIp
-          })
+          !col
+            .find({
+              ip: request.session.visitorIp
+            })
+            .then()
         ) {
           console.log("no IP");
           col.insertOne({
@@ -106,7 +109,16 @@ module.exports = () => {
             .aggregate({
               $group: { _id: null, total: { $sum: "$visits" } }
             })
-            .toArray();
+            .toArray()
+            .then((err, result) => {
+              console.log(result);
+
+              request.session.pageCountMessage = result.total;
+              response.render("pages/index", {
+                pageTitle: "Welcome",
+                pageCountMessage: count
+              });
+            });
           console.log(count);
 
           request.session.pageCountMessage = count;
