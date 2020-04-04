@@ -35,16 +35,20 @@ module.exports = () => {
         // Create a document with request IP and current time of request
         console.log(
           "findIp " +
-            col.find({
-              ip: request.session.visitorIp
-            })
+            !col
+              .find({
+                ip: request.session.visitorIp
+              })
+              .toArray()
         );
         console.log(
           "findIp(t) " +
-            col.find({
-              ip: request.session.visitorIp,
-              date: { $gt: Date.now() - 900000 }
-            })
+            !col
+              .find({
+                ip: request.session.visitorIp,
+                date: { $gt: Date.now() - 900000 }
+              })
+              .toArray()
         );
         col.find().toArray((err, items) => {
           console.log(items);
