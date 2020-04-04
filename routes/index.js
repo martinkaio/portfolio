@@ -37,7 +37,7 @@ module.exports = () => {
           "findIp " +
             !col
               .find({
-                ip: request.session.visitorIp
+                ip: "0.0.0.0"
               })
               .toArray()
         );
@@ -45,7 +45,7 @@ module.exports = () => {
           "findIp(t) " +
             !col
               .find({
-                ip: request.session.visitorIp,
+                ip: "0.0.0.0",
                 date: { $gt: Date.now() - 900000 }
               })
               .toArray()
@@ -55,7 +55,7 @@ module.exports = () => {
         });
         col
           .find({
-            ip: request.session.visitorIp
+            ip: "0.0.0.0"
           })
           .toArray((err, items) => {
             console.log("findIp " + items);
