@@ -56,15 +56,15 @@ module.exports = () => {
           );
         }
 
-        col
-          .aggregate([
+        col.aggregate(
+          [
             {
               $group: { _id: null, total: { $sum: "$visits" } }
             }
-          ])
-          .toArray((err, result) => {
+          ],
+          (err, result) => {
             try {
-              count = JSON.parse(result).total;
+              count = JSON.parse(result)[0].total;
               request.session.pageCountMessage = count;
               response.render("pages/index", {
                 pageTitle: "Welcome",
@@ -81,7 +81,8 @@ module.exports = () => {
               );
               return next(err);
             }
-          });
+          }
+        );
       } else {
         response.render("pages/index", {
           pageTitle: "Welcome",
