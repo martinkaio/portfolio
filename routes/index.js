@@ -73,7 +73,7 @@ module.exports = () => {
             ip: "0.0.0.0"
           })
           .toArray((err, items) => {
-            console.log("findIp " + JSON.parse(items));
+            console.log("findIp " + items);
             console.log(items[0].ip);
           });
 
