@@ -62,8 +62,9 @@ module.exports = () => {
           console.log("aggregate");
           count = col.aggregate({
             $group: { _id: null, total: { $sum: "$visits" } }
-          }).total;
+          });
           console.log(count);
+
           request.session.pageCountMessage = count;
           response.render("pages/index", {
             pageTitle: "Welcome",
