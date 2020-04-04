@@ -56,13 +56,13 @@ module.exports = () => {
           );
         }
 
-        col.aggregate(
-          {
+        col
+          .aggregate({
             $group: { _id: null, total: { $sum: "$visits" } }
-          },
-          (err, result) => {
+          })
+          .next((err, result) => {
             try {
-              count = result[0].total;
+              count = result.total;
               request.session.pageCountMessage = count;
               response.render("pages/index", {
                 pageTitle: "Welcome",
@@ -73,8 +73,7 @@ module.exports = () => {
               console.log(result);
               return next(err);
             }
-          }
-        );
+          });
       } else {
         response.render("pages/index", {
           pageTitle: "Welcome",
