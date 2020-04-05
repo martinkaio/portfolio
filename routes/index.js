@@ -110,16 +110,15 @@ module.exports = () => {
                 $group: { _id: null, total: { $sum: "$visits" } }
               })
               .toArray();
-            return count;
+            request.session.pageCountMessage = count.total;
+            response.render("pages/index", {
+              pageTitle: "Welcome",
+              pageCountMessage: count.total
+            });
+            console.log(count);
           };
 
-          var count = visitCount();
-          request.session.pageCountMessage = count.total;
-          response.render("pages/index", {
-            pageTitle: "Welcome",
-            pageCountMessage: count.total
-          });
-          console.log(count);
+          visitCount();
         } catch (err) {
           console.log("Error running count. Message:\n" + err);
           return next(err);
