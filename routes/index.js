@@ -105,17 +105,18 @@ module.exports = () => {
           console.log("aggregate");
 
           var visitCount = async () => {
-            var count = await col
+            var result = await col
               .aggregate({
                 $group: { _id: null, total: { $sum: "$visits" } }
               })
-              .toArray();
-            request.session.pageCountMessage = count.total;
-            response.render("pages/index", {
-              pageTitle: "Welcome",
-              pageCountMessage: count.total
-            });
-            console.log(count);
+              .toArray((err, count) => {
+                request.session.pageCountMessage = count.total;
+                response.render("pages/index", {
+                  pageTitle: "Welcome",
+                  pageCountMessage: count.total
+                });
+                console.log(count);
+              });
           };
 
           visitCount();
