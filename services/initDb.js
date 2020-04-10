@@ -4,9 +4,9 @@ var initDb = function(callback, app, url, dbDetails, urlLabel, database) {
   var mongodb = require("mongodb");
   if (mongodb == null) return;
 
-  mongodb.connect(url, function(err, client) {
+  mongodb.connect(url, { useUnifiedTopology: true }, function(err, client) {
     if (err) {
-      callback(err);
+      console.log(err);
       return;
     }
 
