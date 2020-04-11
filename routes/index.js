@@ -11,15 +11,7 @@ module.exports = () => {
   router.get("/", (request, response, next) => {
     try {
       request.session.pageCountMessage = null;
-      /*
-      request.session.visitorIp =
-        request.headers["x-forwarded-for"] ||
-        request.connection.remoteAddress ||
-        request.socket.remoteAddress ||
-        (request.connection.socket
-          ? request.connection.socket.remoteAddress
-          : null);
-          */
+
       if (!request.app.locals.db) {
         console.log("No DB");
         initDb(
