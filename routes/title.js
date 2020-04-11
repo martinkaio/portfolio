@@ -1,5 +1,6 @@
 const express = require("express");
-var initDb = require("../services/initDb");
+const initDb = require("../services/initDb");
+const checkVisitor = require("../services/checkVisitor");
 
 const router = express.Router();
 
@@ -18,15 +19,30 @@ module.exports = () => {
         );
       }
       if (request.app.locals.db) {
-        request.app.locals.db
-          .collection("visitors")
-          .countDocuments((err, count) => {
-            response.render("pages/title", {
-              pageTitle: "Title",
-              pageCountMessage: count
-            });
-            request.session.pageCountMessage = count;
-          });
+        const col = request.app.locals.db.collection("visitors");
+
+        (async () => {
+          try {
+            await checkVisitor(col, request.session.visitorIp);
+            col
+              .aggregate([
+                {
+                  $group: { _id: null, total: { $sum: "$visits" } }
+                }
+              ])
+              .toArray(async (err, result) => {
+                count = await result[0].total;
+                request.session.pageCountMessage = count;
+                response.render("pages/title", {
+                  pageTitle: "Title",
+                  pageCountMessage: count
+                });
+              });
+          } catch (err) {
+            console.log("Error running count. Message:\n" + err);
+            return next(err);
+          }
+        })();
       } else {
         response.render("pages/title", {
           pageTitle: "Title",

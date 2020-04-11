@@ -2,7 +2,8 @@ const express = require("express");
 
 const lipsumRoute = require("./lipsum");
 const titleRoute = require("./title");
-var initDb = require("../services/initDb");
+const initDb = require("../services/initDb");
+const checkVisitor = require("../services/checkVisitor");
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ module.exports = () => {
   router.get("/", (request, response, next) => {
     try {
       request.session.pageCountMessage = null;
-
+      /*
       request.session.visitorIp =
         request.headers["x-forwarded-for"] ||
         request.connection.remoteAddress ||
@@ -18,7 +19,7 @@ module.exports = () => {
         (request.connection.socket
           ? request.connection.socket.remoteAddress
           : null);
-
+          */
       if (!request.app.locals.db) {
         console.log("No DB");
         initDb(
@@ -31,40 +32,11 @@ module.exports = () => {
         );
       }
       if (request.app.locals.db) {
-        var col = request.app.locals.db.collection("visitors");
+        const col = request.app.locals.db.collection("visitors");
 
         (async () => {
-          if (
-            (await col
-              .find({
-                ip: request.session.visitorIp
-              })
-              .limit(1)
-              .count()) < 1
-          ) {
-            console.log("new IP");
-            col.insertOne({
-              ip: request.session.visitorIp,
-              date: Date.now(),
-              visits: 1
-            });
-          } else if (
-            (await col
-              .find({
-                ip: request.session.visitorIp,
-                date: { $gt: Date.now() - 900000 }
-              })
-              .limit(1)
-              .count()) < 1
-          ) {
-            console.log("new visit");
-            col.updateOne(
-              { ip: request.session.visitorIp },
-              { $set: { date: Date.now() }, $inc: { visits: 1 } }
-            );
-          }
-
           try {
+            await checkVisitor(col, request.session.visitorIp);
             col
               .aggregate([
                 {

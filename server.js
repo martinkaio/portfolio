@@ -26,6 +26,13 @@ app.use(
 
 app.use(function(request, response, next) {
   request.session.nowInMinutes = Math.floor(Date.now() / 60000);
+  request.session.visitorIp =
+    request.headers["x-forwarded-for"] ||
+    request.connection.remoteAddress ||
+    request.socket.remoteAddress ||
+    (request.connection.socket
+      ? request.connection.socket.remoteAddress
+      : null);
   next();
 });
 

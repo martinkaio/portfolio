@@ -7,17 +7,17 @@
   color: #dce2e6;
 }
 
-body {
-  font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
-  font-size: 1.2em;
-}
-
 html {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+body {
+  font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
 }
 
 h1,
@@ -27,6 +27,11 @@ h4,
 h5,
 h6 {
   font-family: "Halant", "Courier New", Courier, monospace;
+}
+
+.content {
+  min-height: calc(100vh - 85px);
+  padding: 10px 10px 0 10px;
 }
 
 .gradient-bg {
@@ -70,10 +75,10 @@ iframe {
   text-decoration: none;
 }
 .ftr-section {
-  padding: 1px 2px;
+  padding: 2px 4px;
   background-color: rgba(10, 28, 46, 0.3);
   width: 100%;
-  position: fixed;
+  height: 55px;
   bottom: 0;
   width: 100%;
 }
