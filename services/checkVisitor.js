@@ -3,7 +3,7 @@ const checkVisitor = async function(visitors, visitorIp) {
     (await visitors
       .find({
         ip: visitorIp,
-        date: { $gt: Date.now() - 50000 }
+        date: { $gt: Date.now() - 900000 }
       })
       .limit(1)
       .count()) < 1
