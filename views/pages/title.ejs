@@ -12,19 +12,20 @@
     <title><%= siteName %> | <%= pageTitle %></title>
   </head>
   <body>
-    <div class="content">
-      <%- include('./partials/nav-bar') %> <%- include('./partials/lipsum') %>
-      <div class="iframe-container">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/vMJLepZVbQs"
-          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+    <div class="flex-wrapper">
+      <div class="main-wrapper">
+        <%- include('./partials/nav-bar') %> <%- include('./partials/lipsum') %>
+        <div class="iframe-container">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/vMJLepZVbQs"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
+      <footer>
+        <%- include('./partials/footer') %>
+      </footer>
     </div>
-
-    <footer>
-      <%- include('./partials/footer') %>
-    </footer>
   </body>
 </html>

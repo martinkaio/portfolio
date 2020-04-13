@@ -1,24 +1,23 @@
 @import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
 body {
-  padding-left: 46px;
+  padding-left: 55px;
 }
 
-.fa-2x {
+nav .fa-2x {
   font-size: 2em;
 }
-.fa {
+nav .fa {
   position: relative;
   display: table-cell;
   width: 65px;
   height: 36px;
   text-align: center;
   vertical-align: middle;
-  font-size: 20px;
+  font-size: 30px;
 }
 
-.main-menu:hover,
-nav.main-menu.expanded {
+.main-menu:hover {
   width: 200px;
   overflow: visible;
 }
@@ -33,8 +32,8 @@ nav.main-menu.expanded {
   left: 0;
   width: 52px;
   overflow: hidden;
-  -webkit-transition: width 0.05s linear;
-  transition: width 0.05s linear;
+  -webkit-transition: width 0.15s linear;
+  transition: width 0.15s linear;
   -webkit-transform: translateZ(0) scale(1, 1);
   z-index: 1000;
 }
@@ -58,9 +57,14 @@ nav.main-menu.expanded {
   font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
   font-size: 14px;
   text-decoration: none;
+  background: linear-gradient(to left, #222629, #0e8d0e 100%);
+  background-position: 0% 100%;
+  background-repeat: repeat-x;
+  background-repeat: no-repeat;
+  background-size: 0px 36px;
   -webkit-transform: translateZ(0) scale(1, 1);
-  -webkit-transition: all 0.1s linear;
-  transition: all 0.1s linear;
+  -webkit-transition: color 0.4s linear, background-size 0.2s linear;
+  transition: color 0.4s linear, background-size 0.2s linear;
 }
 
 .main-menu .nav-icon {
@@ -80,20 +84,11 @@ nav.main-menu.expanded {
   vertical-align: middle;
   width: 190px;
   font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 26px;
 }
 
-.no-touch .scrollable.hover {
-  overflow-y: hidden;
-}
-
-.no-touch .scrollable.hover:hover {
-  overflow-y: auto;
-  overflow: visible;
-}
-
-a:hover,
-a:focus {
+nav a:hover,
+nav a:focus {
   text-decoration: none;
 }
 
@@ -110,18 +105,11 @@ nav li {
   outline: 0;
   margin: 0;
   padding: 0;
+  text-align: left;
 }
-.main-menu li:hover > a,
-nav.main-menu li.active > a,
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus,
-.dropdown-menu > .active > a,
-.dropdown-menu > .active > a:hover,
-.dropdown-menu > .active > a:focus,
-.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
-.dashboard-page nav.dashboard-menu ul li.active a {
+.main-menu li:hover > a {
   color: #fff;
-  background-color: #0e8d0e;
+  background-size: 210px 36px;
 }
 .area {
   float: left;
