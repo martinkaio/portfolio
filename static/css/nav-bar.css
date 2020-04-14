@@ -63,8 +63,6 @@ nav .fa {
   background-repeat: no-repeat;
   background-size: 0px 36px;
   -webkit-transform: translateZ(0) scale(1, 1);
-  -webkit-transition: color 0.4s linear, background-size 0.2s linear;
-  transition: color 0.4s linear, background-size 0.2s linear;
 }
 
 .main-menu .nav-icon {
@@ -110,6 +108,8 @@ nav li {
 .main-menu li:hover > a {
   color: #fff;
   background-size: 210px 36px;
+  -webkit-transition: color 0.4s linear, background-size 0.2s linear;
+  transition: color 0.4s linear, background-size 0.2s linear;
 }
 .area {
   float: left;

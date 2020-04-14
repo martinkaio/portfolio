@@ -99,15 +99,20 @@ iframe {
 }
 
 .ftr-section {
+  overflow: hidden;
   flex: none;
   flex-shrink: 0;
   padding-top: 2px;
-  padding-left: 5px;
-  background-color: rgba(10, 28, 46, 0.3);
-  margin-left: 0px;
+  padding-left: 0px;
+  background-color: rgba(10, 28, 46, 0.7);
+  margin-left: -1px;
   height: 55px;
   bottom: 0;
-  width: calc(93.6vw-52px);
+  width: calc(93.7vw-52px);
+}
+
+.ftr-copyright {
+  position: absolute;
 }
 
 .ftr-section,
@@ -119,6 +124,7 @@ iframe {
   color: #f2ff49;
   margin-left: 3px;
   padding-right: 3px;
+  text-decoration: none;
 }
 .ftr-section,
 .ftr-section p {
@@ -138,4 +144,105 @@ iframe {
 
 .ftr-section .fa {
   font-size: 20px;
+}
+
+.ftr-section .fa:hover {
+  -webkit-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+  transform: scale(1.4);
+  padding-right: 2px;
+  padding-left: 1px;
+}
+
+.ftr-section .fa:hover,
+.ftr-section a:hover {
+  color: #f2ff49;
+}
+
+.resume {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "photo"
+    "about"
+    "skills"
+    "work"
+    "education";
+  margin: 2px 0px 2px 0px;
+  grid-gap: 3px 3px;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resume-skills,
+.resume-education,
+.resume-about,
+.resume-work,
+.resume-photo {
+  border: 1px solid white;
+  padding: 0px 3px 0px 3px;
+  border-radius: 5px;
+  background-color: rgba(28, 51, 75, 0.2);
+  min-width: 400px;
+}
+
+.resume-photo {
+  grid-area: photo;
+  border: 0px solid black;
+  padding: 2px 0px 2px 0px;
+  background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.resume-photo img {
+  border-radius: 5px;
+  padding: 0px;
+  max-width: 800px;
+  width: 100%;
+  height: auto;
+}
+
+.resume-photo h1 {
+  padding: 1%;
+  font-size: 2.4em;
+  text-align: center;
+}
+
+.resume-work {
+  grid-area: work;
+}
+.resume-about {
+  grid-area: about;
+}
+.resume-education {
+  grid-area: education;
+}
+.resume-skills {
+  grid-area: skills;
+}
+
+@media (max-width: 1001px) {
+  .resume-photo img {
+    max-width: 400px;
+  }
+
+  .resume {
+    padding: 0 5% 0 5%;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1000px) {
+  .resume {
+    display: grid;
+    grid-template-columns: 3fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      "photo about"
+      "skills work"
+      "skills education"
+      "skills education";
+  }
 }
