@@ -2,6 +2,7 @@ const express = require("express");
 
 const lipsumRoute = require("./lipsum");
 const titleRoute = require("./title");
+const dalembertRoute = require("./dalembert");
 const initDb = require("../services/initDb");
 const checkVisitor = require("../services/checkVisitor");
 
@@ -32,15 +33,15 @@ module.exports = () => {
             col
               .aggregate([
                 {
-                  $group: { _id: null, total: { $sum: "$visits" } }
-                }
+                  $group: { _id: null, total: { $sum: "$visits" } },
+                },
               ])
               .toArray(async (err, result) => {
                 count = await result[0].total;
                 request.session.pageCountMessage = count;
                 response.render("pages/index", {
                   pageTitle: "Welcome",
-                  pageCountMessage: count
+                  pageCountMessage: count,
                 });
               });
           } catch (err) {
@@ -51,7 +52,7 @@ module.exports = () => {
       } else {
         response.render("pages/index", {
           pageTitle: "Welcome",
-          pageCountMessage: null
+          pageCountMessage: null,
         });
       }
     } catch (err) {
@@ -59,28 +60,9 @@ module.exports = () => {
     }
   });
 
-  router.get("/dalembert", callD_alembert);
-
-  function callD_alembert(req, res) {
-    // using spawn instead of exec, prefer a stream over a buffer
-    // to avoid maxBuffer issue
-
-    var spawn = require("child_process").spawn;
-    var dalembert = spawn("python", [
-      "./services/dalembert.py",
-      req.query.funds, // starting funds
-      req.query.size, // (initial) wager size
-      req.query.count, // wager count — number of wagers per sim
-      req.query.sims // number of simulations
-    ]);
-
-    dalembert.stdout.on("data", function(data) {
-      res.send(data.toString());
-    });
-  }
-
   router.use("/lipsum", lipsumRoute());
   router.use("/title", titleRoute());
+  router.use("/dalembert", dalembertRoute());
 
   return router;
 };
