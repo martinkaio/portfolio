@@ -59,6 +59,26 @@ module.exports = () => {
     }
   });
 
+  router.get("/dalembert", callD_alembert);
+
+  function callD_alembert(req, res) {
+    // using spawn instead of exec, prefer a stream over a buffer
+    // to avoid maxBuffer issue
+
+    var spawn = require("child_process").spawn;
+    var dalembert = spawn("python", [
+      "./services/dalembert.py",
+      req.query.funds, // starting funds
+      req.query.size, // (initial) wager size
+      req.query.count, // wager count — number of wagers per sim
+      req.query.sims // number of simulations
+    ]);
+
+    dalembert.stdout.on("data", function(data) {
+      res.send(data.toString());
+    });
+  }
+
   router.use("/lipsum", lipsumRoute());
   router.use("/title", titleRoute());
 

@@ -1,111 +1,117 @@
 <!DOCTYPE html>
 
-<html>
+<html class="gradient-bg">
   <head>
     <link
-      href="https://fonts.googleapis.com/css?family=Lobster"
+      href="https://fonts.googleapis.com/css2?family=Halant&family=Nunito+Sans"
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/heart.css" />
+    <link rel="stylesheet" href="css/style_new.css" />
     <link rel="stylesheet" href="css/nav-bar.css" />
     <title><%= siteName %> | <%= pageTitle %></title>
   </head>
   <body>
-    <header>
-      <%- include('./partials/nav-bar') %>
-    </header>
-    <h2 class="cyan-text repeating-background">&ensp;CatPhotoApp</h2>
-    <main>
-      <p class="gradient-background">
-        Click here to view more <a href="#">cat photos</a>.
-      </p>
+    <div class="flex-wrapper">
+      <div class="main-wrapper">
+        <%- include('./partials/nav-bar') %>
 
-      <a href="#">
-        <img
-          class="smaller-image thick-green-border"
-          src="https://bit.ly/fcc-relaxing-cat"
-          alt="A cute orange cat lying on its back."
-        />
-      </a>
-      <div class="silver-background">
-        <p>Things cats love:</p>
-        <ul>
-          <li>cat nip</li>
-          <li>laser pointers</li>
-          <li>lasagna</li>
-        </ul>
-        <p>Top 3 things cats hate:</p>
-        <ol>
-          <li>flea treatment</li>
-          <li>thunder</li>
-          <li>other cats</li>
-        </ol>
+        <article class="resume">
+          <section class="resume-photo">
+            <h1>
+              <img class="" src="/images/self.png" alt="Martin Kaio" />
+              <br />
+              Martin Kaio
+            </h1>
+          </section>
+          <section class="resume-about">
+            <%- include('./partials/lipsum') %>
+          </section>
+          <section class="resume-work">
+            <h2>Work experience</h2>
+
+            <ul>
+              <h3>Research assistant<span> 2018</span></h3>
+              <h4>University of Bristol</h4>
+              <p>
+                Summer internship training and working with fiber laser optics
+                and silicon photonics
+              </p>
+              <p>
+                Measurement and data analysis of silicon photonic resonators
+                transmission spectra
+              </p>
+            </ul>
+          </section>
+          <section class="resume-education">
+            <h2>Education</h2>
+
+            <ul>
+              <h3>MSci Physics<span> 2015-2019</span></h3>
+              <h4>University of Bristol</h4>
+              <p>
+                Thesis on nonlinear parasitic effects related to photon-pair
+                generation in silicon waveguides
+              </p>
+            </ul>
+
+            <ul>
+              <h3>Secondary school<span>2011-2014</span></h3>
+              <h4>Nõo Reaalgümnaasium</h4>
+              <p>
+                Physics and computing specialty
+              </p>
+            </ul>
+          </section>
+          <section class="resume-skills">
+            <ul>
+              <h3>Programming</h3>
+              <li>Python</li>
+              <li>Java</li>
+              <li>Matlab</li>
+              <li>Git</li>
+              <li>CUDA</li>
+              <li>JavaScript</li>
+              <li>Node.js</li>
+              <li>MongoDB</li>
+            </ul>
+            <ul>
+              <h3>General</h3>
+              <li>Physics</li>
+              <li>Mathematics</li>
+              <li>Statistics</li>
+              <li>Data Science</li>
+              <li>Microsoft Office</li>
+            </ul>
+
+            <ul>
+              <h3>Languages</h3>
+
+              <li>English</li>
+              <li>Estonian</li>
+            </ul>
+            <ul>
+              <h3>Interests</h3>
+
+              <li>Electronics</li>
+              <li>Video</li>
+              <li>Computing hardware</li>
+            </ul>
+          </section>
+        </article>
+
+        <div class="iframe-container white-border">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/vMJLepZVbQs"
+            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
-      <form
-        class="gradient-background"
-        id="cat-photo-form"
-        action="/submit-cat-photo"
-      >
-        <fieldset>
-          <label for="indoor">
-            <input
-              id="indoor"
-              type="radio"
-              name="indoor-outdoor"
-              value="indoor"
-              checked
-            />
-            Indoor
-          </label>
-          <label for="outdoor">
-            <input
-              id="outdoor"
-              type="radio"
-              name="indoor-outdoor"
-              value="outdoor"
-            />
-            Outdoor
-          </label>
-        </fieldset>
-        <br />
-        <fieldset>
-          <label for="loving">
-            <input
-              id="loving"
-              type="checkbox"
-              name="personality"
-              value="loving"
-              checked
-            />
-            Loving
-          </label>
-          <label for="lazy">
-            <input id="lazy" type="checkbox" name="personality" value="lazy" />
-            Lazy
-          </label>
-          <label for="energetic">
-            <input
-              id="energetic"
-              type="checkbox"
-              name="personality"
-              value="energetic"
-            />
-            Energetic
-          </label>
-        </fieldset>
-        <br />
-        <fieldset>
-          <input type="text" placeholder="cat photo URL" required />
-          <button type="submit">Submit</button>
-        </fieldset>
-      </form>
-    </main>
-    <br />
-    <div class="heart"></div>
-
-    <footer>
-      <%- include('./partials/footer') %>
-    </footer>
+      <footer>
+        <%- include('./partials/footer') %>
+      </footer>
+    </div>
   </body>
 </html>

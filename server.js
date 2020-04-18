@@ -2,11 +2,14 @@ const express = require("express");
 const path = require("path");
 const cookieSession = require("cookie-session");
 const createError = require("http-errors");
+const helmet = require("helmet");
 var initDb = require("./services/initDb");
 
 Object.assign = require("object-assign");
 
 const app = express();
+app.use(helmet());
+
 const routes = require("./routes");
 
 const port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;

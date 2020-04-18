@@ -1,55 +1,111 @@
 <!DOCTYPE html>
 
-<html class="gradient-bg">
+<html>
   <head>
     <link
-      href="https://fonts.googleapis.com/css2?family=Halant&family=Nunito+Sans"
+      href="https://fonts.googleapis.com/css?family=Lobster"
       rel="stylesheet"
       type="text/css"
     />
-    <link rel="stylesheet" href="css/heart.css" />
-    <link rel="stylesheet" href="css/style_new.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/nav-bar.css" />
     <title><%= siteName %> | <%= pageTitle %></title>
   </head>
   <body>
-    <div class="flex-wrapper">
-      <div class="main-wrapper">
-        <%- include('./partials/nav-bar') %> <%- include('./partials/lipsum') %>
+    <header>
+      <%- include('./partials/nav-bar') %>
+    </header>
+    <h2 class="cyan-text repeating-background">&ensp;CatPhotoApp</h2>
+    <main>
+      <p class="gradient-background">
+        Click here to view more <a href="#">cat photos</a>.
+      </p>
 
-        <article class="resume">
-          <section class="resume-photo">
-            <h1>
-              <img class="" src="/images/self.png" alt="Martin Kaio" />
-              <br />
-              Martin Kaio
-            </h1>
-          </section>
-          <section class="resume-about">
-            <%- include('./partials/lipsum') %>
-          </section>
-          <section class="resume-work">
-            <%- include('./partials/lipsum') %>
-          </section>
-          <section class="resume-education">
-            <%- include('./partials/lipsum') %>
-          </section>
-          <section class="resume-skills">
-            <%- include('./partials/lipsum') %>
-          </section>
-        </article>
-
-        <div class="iframe-container">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/vMJLepZVbQs"
-            allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
+      <a href="#">
+        <img
+          class="smaller-image thick-green-border"
+          src="https://bit.ly/fcc-relaxing-cat"
+          alt="A cute orange cat lying on its back."
+        />
+      </a>
+      <div class="silver-background">
+        <p>Things cats love:</p>
+        <ul>
+          <li>cat nip</li>
+          <li>laser pointers</li>
+          <li>lasagna</li>
+        </ul>
+        <p>Top 3 things cats hate:</p>
+        <ol>
+          <li>flea treatment</li>
+          <li>thunder</li>
+          <li>other cats</li>
+        </ol>
       </div>
-      <footer>
-        <%- include('./partials/footer') %>
-      </footer>
-    </div>
+      <form
+        class="gradient-background"
+        id="cat-photo-form"
+        action="/submit-cat-photo"
+      >
+        <fieldset>
+          <label for="indoor">
+            <input
+              id="indoor"
+              type="radio"
+              name="indoor-outdoor"
+              value="indoor"
+              checked
+            />
+            Indoor
+          </label>
+          <label for="outdoor">
+            <input
+              id="outdoor"
+              type="radio"
+              name="indoor-outdoor"
+              value="outdoor"
+            />
+            Outdoor
+          </label>
+        </fieldset>
+        <br />
+        <fieldset>
+          <label for="loving">
+            <input
+              id="loving"
+              type="checkbox"
+              name="personality"
+              value="loving"
+              checked
+            />
+            Loving
+          </label>
+          <label for="lazy">
+            <input id="lazy" type="checkbox" name="personality" value="lazy" />
+            Lazy
+          </label>
+          <label for="energetic">
+            <input
+              id="energetic"
+              type="checkbox"
+              name="personality"
+              value="energetic"
+            />
+            Energetic
+          </label>
+        </fieldset>
+        <br />
+        <fieldset>
+          <input type="text" placeholder="cat photo URL" required />
+          <button type="submit">Submit</button>
+        </fieldset>
+      </form>
+    </main>
+    <br />
+    <div class="heart"></div>
+
+    <footer>
+      <%- include('./partials/footer') %>
+    </footer>
   </body>
 </html>
