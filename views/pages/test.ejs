@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html class="gradient-bg">
+  <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Halant&family=Nunito+Sans"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="css/heart.css" />
+    <link rel="stylesheet" href="css/style_new.css" />
+    <link rel="stylesheet" href="css/nav-bar.css" />
+    <title><%= siteName %> | <%= pageTitle %></title>
+  </head>
+  <body>
+    <div class="flex-wrapper">
+      <div class="main-wrapper">
+        <%- include('./partials/nav-bar') %>
+        <section class="gallery">
+          <div class="pixgrid clearfix">
+            <% pictures.forEach(function (item, key) {%>
+            <img src="/images/compressed/<%=item%>" alt="Picture <%=key%>" />
+            <%})%>
+          </div>
+        </section>
+      </div>
+      <footer>
+        <%- include('./partials/footer') %>
+      </footer>
+    </div>
+    <script src="js/pixgrid.js"></script>
+  </body>
+</html>

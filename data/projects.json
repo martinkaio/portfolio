@@ -1,0 +1,24 @@
+{
+  "projects": [
+    {
+      "name": "Solar",
+      "title": "Solar powered mirror light",
+      "summary": "",
+      "pictures": [
+        "mirrorlight_1_tn.jpg",
+        "mirrorlight_2_tn.jpg",
+        "mirrorlight_3_tn.jpg",
+        "mirrorlight_4_tn.jpg",
+        "mirrorlight_5_tn.jpg",
+        "mirrorlight_6_tn.jpg",
+        "mirrorlight_7_tn.jpg",
+        "mirrorlight_8_tn.jpg",
+        "mirrorlight_9_tn.jpg",
+        "mirrorlight_10_tn.jpg",
+        "mirrorlight_11_tn.jpg",
+        "mirrorlight_12_tn.jpg",
+        "mirrorlight_13_tn.jpg"
+      ]
+    }
+  ]
+}

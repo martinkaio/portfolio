@@ -121,3 +121,32 @@ img {
     transform: scale(1) rotate(315deg);
   }
 }
+
+/**  pixgrid **/
+
+.pixgrid {
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.pixgrid img {
+  display: block;
+  padding: 5px;
+  float: left;
+  width: 8.88%;
+  max-width: 160px;
+  min-width: 80px;
+  border-radius: 8px;
+}
+
+@media (min-width: 500px) and (max-width: 768px) {
+  .pixgrid img {
+    width: 15%;
+  }
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}

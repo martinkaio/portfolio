@@ -6,9 +6,6 @@ const router = express.Router();
 module.exports = () => {
   router.get("/", (request, response, next) => {
     try {
-      // using spawn instead of exec, prefer a stream over a buffer
-      // to avoid maxBuffer issue
-
       var dalembert = spawn("python", [
         "./services/dalembert.py",
         request.query.funds, // starting funds

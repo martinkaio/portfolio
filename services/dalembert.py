@@ -86,5 +86,6 @@ while counter <= daSampSize:
     }
 
 
-print(str(results))
+
+sys.stdout.write(str(results))
 sys.stdout.flush()

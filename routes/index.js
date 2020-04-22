@@ -8,7 +8,7 @@ const checkVisitor = require("../services/checkVisitor");
 
 const router = express.Router();
 
-module.exports = () => {
+module.exports = (params) => {
   router.get("/", (request, response, next) => {
     try {
       request.session.pageCountMessage = null;
@@ -60,7 +60,34 @@ module.exports = () => {
     }
   });
 
-  router.use("/lipsum", lipsumRoute());
+  const { projectService } = params;
+  router.get("/test", async (request, response, next) => {
+    try {
+      const pictures = await projectService.getAllPictures();
+      response.render("pages/test", {
+        pageTitle: "Test",
+        pageCountMessage: request.session.pageCountMessage,
+        pictures,
+      });
+    } catch (err) {
+      return next(err);
+    }
+  });
+
+  router.get("/projects/solar", async (request, response, next) => {
+    try {
+      const pictures = await projectService.getAllPictures();
+      response.render("pages/projects/solar", {
+        pageTitle: "Solar light",
+        pageCountMessage: request.session.pageCountMessage,
+        pictures,
+      });
+    } catch (err) {
+      return next(err);
+    }
+  });
+
+  router.use("/lipsum", lipsumRoute(params));
   router.use("/title", titleRoute());
   router.use("/dalembert", dalembertRoute());
 

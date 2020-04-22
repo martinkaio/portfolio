@@ -1,4 +1,4 @@
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css);
 
 body {
   padding-left: 55px;
@@ -7,7 +7,8 @@ body {
 nav .fa-2x {
   font-size: 2em;
 }
-nav .fa {
+nav .fa,
+nav .fas {
   position: relative;
   display: table-cell;
   width: 65px;
@@ -46,6 +47,7 @@ nav .fa {
   position: relative;
   display: block;
   width: 200px;
+  margin-top: 0px;
 }
 
 .main-menu li > a {
@@ -116,4 +118,32 @@ nav li {
   background: linear-gradient(110deg, #222629, #61892f);
   width: 100%;
   height: 100%;
+}
+
+nav li {
+  display: block;
+  transition-duration: 0.5s;
+}
+
+nav ul li ul {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s ease;
+  top: 0px;
+  left: 200px;
+  width: 190px;
+  display: none;
+  color: #fff;
+  background: #212121;
+  display: block;
+  float: left;
+  position: absolute;
+  text-decoration: none;
+  transition-duration: 0.5s;
+}
+
+nav ul li:hover > ul,
+nav ul li ul:hover {
+  visibility: visible;
+  opacity: 1;
 }

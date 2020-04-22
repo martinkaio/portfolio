@@ -27,15 +27,15 @@ module.exports = () => {
             col
               .aggregate([
                 {
-                  $group: { _id: null, total: { $sum: "$visits" } }
-                }
+                  $group: { _id: null, total: { $sum: "$visits" } },
+                },
               ])
               .toArray(async (err, result) => {
                 count = await result[0].total;
                 request.session.pageCountMessage = count;
                 response.render("pages/title", {
                   pageTitle: "Title",
-                  pageCountMessage: count
+                  pageCountMessage: count,
                 });
               });
           } catch (err) {
@@ -46,7 +46,7 @@ module.exports = () => {
       } else {
         response.render("pages/title", {
           pageTitle: "Title",
-          pageCountMessage: null
+          pageCountMessage: null,
         });
       }
     } catch (err) {

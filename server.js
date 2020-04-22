@@ -3,6 +3,7 @@ const path = require("path");
 const cookieSession = require("cookie-session");
 const createError = require("http-errors");
 const helmet = require("helmet");
+const csurf = require("csurf");
 var initDb = require("./services/initDb");
 
 Object.assign = require("object-assign");
@@ -23,7 +24,7 @@ app.use(
   cookieSession({
     name: "session",
     keys: ["wRsM88ay9b", "R9Kg6tzwMB"],
-    maxAge: 900000
+    maxAge: 900000,
   })
 );
 

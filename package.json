@@ -25,11 +25,12 @@
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
+    "helmet": "^3.22.0",
     "http-errors": "^1.7.3",
     "minimist": "^1.2.5",
     "mongodb": "^3.5.5",
     "object-assign": "^4.1.1",
-    "helmet": "^3.22.0"
+    "csurf": "^1.11.0"
   },
   "engine": {
     "node": "*",
