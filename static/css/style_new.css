@@ -19,7 +19,6 @@ html {
 
 body {
   font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
-  font-size: 1.2em;
 }
 
 html,
@@ -179,6 +178,7 @@ iframe {
   margin-left: auto;
   margin-right: auto;
   margin-top: 45px;
+  font-size: 1.2em;
 }
 
 .resume-skills,
@@ -316,6 +316,58 @@ iframe {
   .resume-photo {
     padding: 0px 3px 0px 3px;
   }
+}
+
+.projects {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "summary"
+    "list"
+    "gallery";
+  margin: 2px 0px 2px 0px;
+  grid-gap: 3px 3px;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 45px;
+  font-size: 1.2em;
+}
+
+.projects-summary,
+.projects-list,
+.projects-gallery {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 2px 3px 2px 3px;
+  margin: 3px 0 3px 0;
+  border-radius: 5px;
+  background-color: rgba(28, 51, 75, 0.2);
+  min-width: 400px;
+}
+
+.projects-summary {
+  grid-area: summary;
+}
+.projects-list {
+  grid-area: list;
+}
+.projects-gallery {
+  grid-area: gallery;
+}
+
+.projects-list ul {
+  margin-left: -35px;
+  line-height: 1em;
+}
+
+.projects-list p {
+  margin: 1px 0 2px 0;
+  font-size: 0.9em;
+}
+
+.projects-list h2 {
+  font-size: 1.3em;
+  margin: 1px 0 2px 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
 }
 
 /**  pixgrid **/

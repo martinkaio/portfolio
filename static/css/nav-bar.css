@@ -122,13 +122,13 @@ nav li {
 
 nav li {
   display: block;
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
 }
 
 nav ul li ul {
   visibility: hidden;
   opacity: 0;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
   top: 0px;
   left: 200px;
   width: 190px;
@@ -139,7 +139,7 @@ nav ul li ul {
   float: left;
   position: absolute;
   text-decoration: none;
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
 }
 
 nav ul li:hover > ul,

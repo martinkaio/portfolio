@@ -16,12 +16,25 @@
     <div class="flex-wrapper">
       <div class="main-wrapper">
         <%- include('./partials/nav-bar') %>
-        <section class="gallery">
-          <div class="pixgrid clearfix">
-            <% pictures.forEach(function (item, key) {%>
-            <img src="/images/compressed/<%=item%>" alt="Picture <%=key%>" />
-            <%})%>
-          </div>
+        <section class="projects">
+          <section class="projects-summary">
+            <%- include('./partials/lipsum.ejs') %>
+          </section>
+          <section class="projects-list">
+            <ul>
+              <%- include('./partials/lipsum.ejs') %>
+            </ul>
+            <ul>
+              <%- include('./partials/lipsum.ejs') %>
+            </ul>
+          </section>
+          <section class="projects-gallery">
+            <div class="pixgrid clearfix">
+              <% pictures.forEach(function (item, key) {%>
+              <img src="/images/compressed/<%=item%>" alt="Picture <%=key%>" />
+              <%})%>
+            </div>
+          </section>
         </section>
       </div>
       <footer>
