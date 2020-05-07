@@ -8,6 +8,9 @@ var initDb = require("./services/initDb");
 
 Object.assign = require("object-assign");
 
+const ProjectService = require("./services/ProjectService");
+const projectService = new ProjectService("./data/projects.json");
+
 const app = express();
 app.use(helmet());
 
@@ -27,6 +30,8 @@ app.use(
     maxAge: 900000,
   })
 );
+
+const csrfProtection = csrf({ cookie: true });
 
 app.use(function(request, response, next) {
   request.session.nowInMinutes = Math.floor(Date.now() / 60000);
@@ -92,7 +97,7 @@ app.locals.siteName = "Martin Kaio";
 
 app.use(express.static(path.join(__dirname, "./static")));
 
-app.use("/", routes());
+app.use("/", routes({ projectService }));
 
 app.use((request, response, next) => {
   return next(createError(404, "File not found"));
