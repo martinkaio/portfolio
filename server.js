@@ -3,7 +3,7 @@ const path = require("path");
 const cookieSession = require("cookie-session");
 const createError = require("http-errors");
 const helmet = require("helmet");
-const csurf = require("csurf");
+const csrf = require("csurf");
 var initDb = require("./services/initDb");
 
 Object.assign = require("object-assign");
